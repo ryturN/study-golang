@@ -73,10 +73,23 @@ func newPerson(c *gin.Context) {
 	persons = append(persons, newPerson)
 	c.IndentedJSON(http.StatusCreated, newPerson)
 }
+
+func register(c *gin.Context) {
+	var newPerson person
+	if err := c.BindJSON(&newPerson); err != nil {
+		return
+	}
+
+	persons = append(persons, newPerson)
+	c.IndentedJSON(http.StatusCreated, newPerson)
+	return
+}
+
 func main() {
 	router := gin.Default()
 	router.GET("/persons", getPersons)
 	router.POST("/persons", newPerson)
+	router.POST("/register", register)
 	router.GET("/persons/:id", getPersonsById)
 	router.PUT("/persons/:id", updatePersons)
 	router.Run("localhost:8080")
