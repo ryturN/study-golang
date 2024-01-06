@@ -29,8 +29,4 @@ func main() {
 	waktu := time.Now()
 	fmt.Println(waktu.Date())
 	fmt.Println(waktu.Hour())
-	// switch waktu.Date() {
-	// case "January":
-	// 	fmt.Println("01")
-	// }
 }
